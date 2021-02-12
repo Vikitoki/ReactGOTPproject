@@ -1,0 +1,29 @@
+.btn {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 12px 25px;
+
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  color: #fff;
+  text-transform: uppercase;
+
+  border: 2px solid #fff;
+  border-radius: 5px;
+
+  cursor: pointer;
+  transition: color 0.2s ease, background-color 0.2s ease;
+
+  &_primary {
+    background: rgb(95, 92, 238);
+
+		&:hover{
+			background: rgb(54, 51, 221);
+		}
+
+		&:active{
+			background: rgb(25, 21, 226);
+		}
+  }
+}

@@ -1,6 +1,7 @@
 export default class GOTService {
   constructor() {
     this._apiBase = "https://anapioficeandfire.com/api";
+    this.noData = "---";
   }
 
   randomInteger = (min, max) => {
@@ -22,19 +23,19 @@ export default class GOTService {
 
   getAllCharacters = async () => {
     const response = await this.getResource("/characters");
-    return response;
+    return response.map((char) => this._modifiedCharacter(char));
   };
 
   getOneCharacter = async (id) => {
     const response = await this.getResource(`/characters/${id}`);
-    return response;
+    return this._modifiedCharacter(response);
   };
 
   getRandomCharacter = async () => {
     const response = await this.getResource(
       `/characters/${this.randomInteger(1, 1000)}`
     );
-    return response;
+    return this._modifiedCharacter(response);
   };
 
   getAllBooks = async () => {
@@ -56,18 +57,48 @@ export default class GOTService {
 
   getAllHouses = async () => {
     const response = await this.getResource("/houses");
-    return response;
+    return response.map((house) => this._modifiedHouse(house));
   };
 
   getOneHouse = async (id) => {
     const response = await this.getResource(`/houses/${id}`);
-    return response;
+    return this._modifiedHouse(response);
   };
 
   getRandomHouse = async () => {
     const response = await this.getResource(
       `/houses/${this.randomInteger(1, 10)}`
     );
-    return response;
+    return this._modifiedHouse(response);
+  };
+
+  _modifiedCharacter = (char) => {
+    return {
+      name: char.name || this.noData,
+      gender: char.gender || this.noData,
+      born: char.born || this.noData,
+      died: char.died || this.noData,
+      culture: char.culture || this.noData,
+    };
+  };
+
+  _modifiedHouse = (house) => {
+    return {
+      name: house.name || this.noData,
+      region: house.region || this.noData,
+      words: house.words || this.noData,
+      titles: house.titles || this.noData,
+      overload: house.overload || this.noData,
+      ancestralWeapons: house.ancestralWeapons || this.noData,
+    };
+  };
+
+  _modifiedBook = (book) => {
+    return {
+      name: book.name || this.noData,
+      numberOfPages: book.numberOfPages || this.noData,
+      publiser: book.publiser || this.noData,
+      released: book.released || this.noData,
+    };
   };
 }

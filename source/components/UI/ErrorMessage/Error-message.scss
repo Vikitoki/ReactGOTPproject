@@ -1,0 +1,15 @@
+.error-message {
+  display: block;
+  width: 100%;
+
+  font-size: 25px;
+  text-align: center;
+  font-weight: 600;
+  color: #000;
+  p {
+    margin-bottom: 15px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
