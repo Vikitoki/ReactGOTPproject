@@ -22,7 +22,7 @@ export default class GOTService {
   };
 
   getAllCharacters = async () => {
-    const response = await this.getResource("/characters");
+    const response = await this.getResource("/characters?page=5");
     return response.map((char) => this._modifiedCharacter(char));
   };
 

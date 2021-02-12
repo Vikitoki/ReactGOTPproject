@@ -15,6 +15,7 @@ export default class App extends Component {
 
     this.state = {
       visibleRandom: true,
+      selectedItem: null,
     };
   }
 
@@ -24,11 +25,16 @@ export default class App extends Component {
     });
   };
 
+  onItemSelected = (id) => {
+    this.setState({ selectedItem: id });
+  };
+
   render() {
-    const { visibleRandom } = this.state;
+
+    const { visibleRandom, selectedItem } = this.state;
 
     const random = visibleRandom ? <RandomItem /> : null;
-		
+
     return (
       <div className="app">
         <div className="app__container container">
@@ -48,10 +54,10 @@ export default class App extends Component {
             </div>
             <div className="content-app__bottom">
               <div className="content-app__column">
-                <ItemDetails />
+                <ItemDetails selectedItem={selectedItem} />
               </div>
               <div className="content-app__column">
-                <ItemList />
+                <ItemList onItemSelected={this.onItemSelected} />
               </div>
             </div>
           </div>
