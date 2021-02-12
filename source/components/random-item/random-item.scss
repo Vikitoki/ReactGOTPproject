@@ -1,0 +1,41 @@
+.random-item {
+  display: block;
+  padding: 15px;
+
+  background-color: #fff;
+  border-radius: 5px;
+  &__top {
+    margin-bottom: 20px;
+  }
+
+  &__name {
+    display: block;
+
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  &__list {
+    li {
+      margin-bottom: 25px;
+    }
+  }
+}
+.values-random-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__left {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  &__right {
+		font-size: 18px;
+    font-weight: 600;
+    color: rgb(153, 142, 142);
+  }
+}

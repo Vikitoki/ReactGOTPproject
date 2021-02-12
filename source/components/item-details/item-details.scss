@@ -1,0 +1,46 @@
+.item-details {
+  display: block;
+  padding: 15px;
+
+  background-color: #fff;
+  border-radius: 5px;
+
+  &__top {
+    margin-bottom: 25px;
+  }
+
+  &__name {
+    display: block;
+
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: rgb(0, 0, 0);
+  }
+
+  &__list {
+    li {
+      margin-bottom: 25px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+.values-details {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  &__left {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+  }
+
+  &__right {
+		font-size: 18px;
+    font-weight: 600;
+    color: rgb(136, 120, 120);
+  }
+}

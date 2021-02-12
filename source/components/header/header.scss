@@ -1,0 +1,36 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  &__title {
+    font-size: 36px;
+    font-weight: 700;
+    color: rgb(255, 255, 255);
+  }
+
+  &__menu {
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    li {
+      margin-right: 15px;
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  &__link {
+    display: block;
+
+    font-size: 22px;
+    font-weight: 500;
+    color: #fff;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
