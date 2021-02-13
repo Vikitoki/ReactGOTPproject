@@ -4,6 +4,17 @@ import Spinner from "../UI/Spinner/Spinner";
 
 import "./item-details.scss";
 
+const Field = ({ item, field, label }) => {
+  return (
+    <li className="item-details__values values-details">
+      <div className="values-details__left">{label}</div>
+      <div className="values-details__right">{item[field]}</div>
+    </li>
+  );
+};
+
+export { Field };
+
 export default class ItemDetails extends Component {
   constructor(props) {
     super(props);
@@ -26,13 +37,14 @@ export default class ItemDetails extends Component {
   }
 
   updateItem = () => {
-    const itemId = this.props.selectedItem;
+    const itemId = this.props.selectedItem,
+      getData = this.props.getData;
 
     if (!itemId) {
       return;
     }
 
-    this.gotService.getOneCharacter(itemId).then((item) => {
+    getData(itemId).then((item) => {
       this.setState({
         item,
         load: false,
@@ -44,17 +56,26 @@ export default class ItemDetails extends Component {
     const { item, load } = this.state;
 
     if (!item) {
-      return <span>Пожалуйста выберите понравившуюся вещь из списка</span>;
+      return (
+        <span className="item-details__choose">
+          Пожалуйста выберите понравившуюся вещь из списка
+        </span>
+      );
     }
 
-    const content = load ? <Spinner /> : <ItemDetailsBlock item={item} />;
+    const content = load ? (
+      <Spinner />
+    ) : (
+      <ItemDetailsBlock children={this.props.children} item={item} />
+    );
 
     return <div className="item-details">{content}</div>;
   }
 }
 
-const ItemDetailsBlock = ({ item }) => {
-  const { name, gender, born, died, culture } = item;
+const ItemDetailsBlock = ({ item, children }) => {
+  const { name } = item;
+
   return (
     <>
       <div className="item-details__top">
@@ -62,22 +83,9 @@ const ItemDetailsBlock = ({ item }) => {
       </div>
       <div className="item-details__content">
         <ul className="item-details__list">
-          <li className="item-details__values values-details">
-            <div className="values-details__left">Gender</div>
-            <div className="values-details__right">{gender}</div>
-          </li>
-          <li className="item-details__values values-details">
-            <div className="values-details__left">Born</div>
-            <div className="values-details__right">{born}</div>
-          </li>
-          <li className="item-details__values values-details">
-            <div className="values-details__left">Died</div>
-            <div className="values-details__right">{died}</div>
-          </li>
-          <li className="item-details__values values-details">
-            <div className="values-details__left">Culture</div>
-            <div className="values-details__right">{culture}</div>
-          </li>
+          {React.Children.map(children, (child) => {
+            return React.cloneElement(child, { item });
+          })}
         </ul>
       </div>
     </>

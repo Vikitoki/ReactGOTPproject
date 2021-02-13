@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import GOTService from "../../services/got-service";
 
 import Header from "../header/header";
-import ItemDetails from "../item-details/item-details";
-import ItemList from "../item-list/item-list";
 import RandomItem from "../random-item/random-item";
 import Button from "../UI/Button/Button";
+import ErrorMessage from "../UI/ErrorMessage/Error-message";
+
+import CharPage from "../pages/char-page";
+import BookPage from "../pages/book-page";
+import HousePage from "../pages/house-page";
 
 import "./app.scss";
 
@@ -15,8 +17,15 @@ export default class App extends Component {
 
     this.state = {
       visibleRandom: true,
-      selectedItem: null,
+      error: false,
     };
+  }
+
+  componentDidCatch() {
+    console.log(err);
+    this.setState({
+      error: true,
+    });
   }
 
   onToggleRandom = () => {
@@ -25,13 +34,12 @@ export default class App extends Component {
     });
   };
 
-  onItemSelected = (id) => {
-    this.setState({ selectedItem: id });
-  };
-
   render() {
+    const { visibleRandom, error } = this.state;
 
-    const { visibleRandom, selectedItem } = this.state;
+    if (error) {
+      return <ErrorMessage />;
+    }
 
     const random = visibleRandom ? <RandomItem /> : null;
 
@@ -53,12 +61,7 @@ export default class App extends Component {
               </div>
             </div>
             <div className="content-app__bottom">
-              <div className="content-app__column">
-                <ItemDetails selectedItem={selectedItem} />
-              </div>
-              <div className="content-app__column">
-                <ItemList onItemSelected={this.onItemSelected} />
-              </div>
+              <BookPage />
             </div>
           </div>
           <div className="app__footer"></div>

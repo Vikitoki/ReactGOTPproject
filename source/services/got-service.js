@@ -40,19 +40,19 @@ export default class GOTService {
 
   getAllBooks = async () => {
     const response = await this.getResource("/books");
-    return response;
+    return response.map((book) => this._modifiedBook(book));
   };
 
   getOneBook = async (id) => {
     const response = await this.getResource(`/books/${id}`);
-    return response;
+    return this._modifiedBook(response);
   };
 
   getRandomBook = async () => {
     const response = await this.getResource(
       `/books/${this.randomInteger(1, 10)}`
     );
-    return response;
+    return this._modifiedBook(response);
   };
 
   getAllHouses = async () => {

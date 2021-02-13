@@ -26,6 +26,14 @@
       }
     }
   }
+
+  &__choose {
+    display: block;
+    padding: 17px;
+
+    background-color: #fff;
+    border-radius: 5px;
+  }
 }
 .values-details {
   display: flex;
@@ -39,7 +47,7 @@
   }
 
   &__right {
-		font-size: 18px;
+    font-size: 18px;
     font-weight: 600;
     color: rgb(136, 120, 120);
   }
