@@ -1,7 +1,14 @@
 import React from "react";
 import ReactDom from "react-dom";
 import App from "./components/app/app";
+import { BrowserRouter } from "react-router-dom";
 
 import "./components/styles/style.scss";
 
-ReactDom.render(<App />, document.getElementById("introContent"));
+const content = (
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>
+);
+
+ReactDom.render(content, document.getElementById("introContent"));

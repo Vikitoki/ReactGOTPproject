@@ -8,6 +8,9 @@ import ErrorMessage from "../UI/ErrorMessage/Error-message";
 import CharPage from "../pages/char-page";
 import BookPage from "../pages/book-page";
 import HousePage from "../pages/house-page";
+import HousePageItem from "../pages/house-page-item";
+
+import { Route } from "react-router-dom";
 
 import "./app.scss";
 
@@ -61,7 +64,16 @@ export default class App extends Component {
               </div>
             </div>
             <div className="content-app__bottom">
-              <BookPage />
+              <Route component={BookPage} path="/book-page" />
+              <Route component={CharPage} path="/char-page" />
+              <Route exact component={HousePage} path="/house-page" />
+              <Route
+                path="/house-page/:id"
+                render={({match}) => {
+                  const { id } = match.params;
+                  return <HousePageItem houseId={id} />;
+                }}
+              />
             </div>
           </div>
           <div className="app__footer"></div>
